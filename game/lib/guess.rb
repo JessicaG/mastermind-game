@@ -11,7 +11,7 @@ class Guess
     @content.join('')
   end
 
-  def self.valid?(guess)
+  def valid?(guess)
     guess.to_s.upcase =~ /^[RGBY]+$/
   end
 

@@ -39,14 +39,14 @@ class GameTest < Minitest::Test
     assert_equal 2, game.guess_record.count
   end
 
-  def track_time_of_turns_test
-    game = Game.new
-    guess = Guess.new
-
-    game.add_guess
-    assert_equal 1, game.guess_record.time
-    game.add_guess
-    assert_equal 2, game.guess_record.time
-  end
+  # def track_time_of_turns_test
+  #   game = Game.new
+  #   guess = Guess.new
+  #
+  #   game.add_guess
+  #   assert_equal 1, game.guess_record.time
+  #   game.add_guess
+  #   assert_equal 2, game.guess_record.time
+  # end
 
 end

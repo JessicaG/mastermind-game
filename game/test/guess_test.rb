@@ -29,18 +29,26 @@ class GuessTest <Minitest::Test
     assert_equal "rgby", game.guess_record.guesses
   end
 
-  def test_time_of_guess
-
-    ##use started_at for timing
-  end
-
-  def upcase_of_guess
-  end
-
   def test_new_sequence_for_new_game
     game = Game.new
     game.start
     assert game.sequence
   end
+
+    def test_it_returns_true_for_a_valid_guess
+    assert GuessValidator.valid?('rgby')
+    assert GuessValidator.valid?('yyyy')
+    assert GuessValidator.valid?('ggrb')
+    assert GuessValidator.valid?('rrbb')
+  end
+
+  def test_it_returns_false_for_an_invalid_guess
+    refute GuessValidator.valid?('OOOO')
+    refute GuessValidator.valid?('0000')
+    refute GuessValidator.valid?(false)
+    refute GuessValidator.valid?(nil)
+    refute GuessValidator.valid?(0.1)
+  end
+end
 
 end

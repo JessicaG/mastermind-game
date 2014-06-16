@@ -3,7 +3,7 @@ require_relative '../lib/sequence'
 
 class SequenceTest < Minitest::Test
 
-  def test_solution_has_four_characters
+  def test_guess_has_four_characters
   end
 
 end
