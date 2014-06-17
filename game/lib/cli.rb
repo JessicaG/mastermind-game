@@ -2,7 +2,7 @@ class CLI
   def self.run
     # repository = EntryRepository.in("./data")
     # phone_book = Game.new(repository)
-    # new(game).start
+    new(game).start
   end
 
   attr_reader :command,
@@ -16,8 +16,15 @@ class CLI
   end
 
   def start
+    puts 'Welcome to the MASTER OF MINDS. Choose your fate... (p)lay, read the (i)nstructions, or (q)uit?'
+    while command != "quit"
+      print 'I have generated a n00b sequence with four elements made up of: (r)ed,
+      (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.
+      What is your guess?'
+      execute_command
+    end
+      puts "SNOOZE YOU LOSE, BUDDY!"
   end
-
 
   def get_instruction
     puts 'I have generated a n00b sequence with four elements made up of: (r)ed,

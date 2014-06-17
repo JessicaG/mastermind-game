@@ -6,7 +6,7 @@ class CLITest < Minitest::Test
   def setup
     # repository = EntryRepository.in("./test/fixtures")
     # phone_book = PhoneBook.new(repository)
-    # @cli ||= CLI.new(phone_book)
+    @cli ||= CLI.new(game)
   end
 
   def test_it_exists

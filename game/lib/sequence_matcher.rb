@@ -1,28 +1,26 @@
 class SequenceMatcher
   attr_reader :guess,
-              :sequence
+              :secret_sequence
 
-  def initialize(guess, sequence)
-    @guess      = guess
-    @sequence   = sequence
-    @matches    = @positions = 0
+  def initialize(guess, secret_sequence)
+    @guess = guess
+    @secret_sequence = secret_sequence
+  end
+
+  def match_count
+    guess.count
   end
 
   def match?
-
+    guess == secret_sequence
   end
 
-  def include?(character)
-
+  def match_count
+    letters = []
+      g = guess.chars
+      s = secret_sequence.chars
+        letters = g.map do |letter| letter if s.include?(letter)
+        end
+      letters.join.length
   end
-
-  def position?(character, index)
-    
-  end
-
-  def match_hash
-    full_match = (@matches == sequence.count) && (@positions == sequence.count)
-    { matches: @matches, positions: @positions, full_match: full_match, sequence: sequence, guess: @guess }
-  end
-
 end
