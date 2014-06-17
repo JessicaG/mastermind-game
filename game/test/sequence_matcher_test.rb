@@ -5,7 +5,7 @@ require_relative '../lib/sequence_matcher'
 
 class SequenceMatcherTest < Minitest::Test
 
-  def test_it_has_a_secret_sequence
+  def test_it_has_a_overall_sequence
     matcher = SequenceMatcher.new("rgby", "rgby")
     assert_equal "rgby", matcher.secret_sequence
   end
@@ -27,5 +27,17 @@ class SequenceMatcherTest < Minitest::Test
     matcher = SequenceMatcher.new("rygg", "bbbr")
     assert_equal 1, matcher.match_count
   end
+
+  def test_it_can_return_matching_letters
+    matcher = SequenceMatcher.new("rygg", "bbgr")
+    assert_equal 2, matcher.match_count
+  end
+
+  def test_it_can_return_matching_letters
+    matcher = SequenceMatcher.new("rygg", "bygr")
+    assert_equal 3, matcher.match_count
+  end
+
+  ##review position matching?##
 
 end

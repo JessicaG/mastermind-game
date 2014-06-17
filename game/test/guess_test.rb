@@ -36,18 +36,18 @@ class GuessTest <Minitest::Test
   end
 
     def test_it_returns_true_for_a_valid_guess
-    assert GuessValidator.valid?('rgby')
-    assert GuessValidator.valid?('yyyy')
-    assert GuessValidator.valid?('ggrb')
-    assert GuessValidator.valid?('rrbb')
+    assert Guess.valid?('rgby')
+    assert Guess.valid?('yyyy')
+    assert Guess.valid?('ggrb')
+    assert Guess.valid?('rrbb')
   end
 
   def test_it_returns_false_for_an_invalid_guess
-    refute GuessValidator.valid?('OOOO')
-    refute GuessValidator.valid?('0000')
-    refute GuessValidator.valid?(false)
-    refute GuessValidator.valid?(nil)
-    refute GuessValidator.valid?(0.1)
+    refute Guess.valid?('OOOO')
+    refute Guess.valid?('0000')
+    refute Guess.valid?(false)
+    refute Guess.valid?(nil)
+    refute Guess.valid?(0.1)
   end
 end
 
