@@ -1,3 +1,3 @@
 Dir["./lib/*.rb"].each { |file| require "#{file}" }
 
-CLI.run
+CLI.new.run
