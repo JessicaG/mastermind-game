@@ -18,7 +18,7 @@ class CLI
     win             = false
 
     until win
-      puts "Mastermind Started."
+      puts get_instruction
       print "Enter your guess: "
       guess     = Guess.new(gets.strip).to_s
       matcher   = SequenceMatcher.new(guess, secret_sequence)
