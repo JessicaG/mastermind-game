@@ -49,7 +49,7 @@ class REPL
   end
 
   def print_outro
-    print 'You are leaving the master of minds, making you a minor of minds, sucka.'
+    print 'You are leaving the master of minds, making you a minor of minds, sucka. Choose (p)lay to run again.'
   end
 
   def run

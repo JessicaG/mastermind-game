@@ -7,7 +7,7 @@ class SequenceMatcher
     @secret_sequence = secret_sequence
   end
 
-  def match_count
+  def guess_count
     guess.count
   end
 
@@ -15,7 +15,18 @@ class SequenceMatcher
     guess == secret_sequence
   end
 
+  def correct_position_count
+    count = 0
+    [0,1,2,3].each do |index|
+      if @guess[index] == @secret_sequence[index]
+        count += 1
+      end
+    end
+    count
+  end
+
   def match_count
+    ##is this the best way to match? Using chars and mapping? should i do each insted?
     letters = []
       g = guess.chars
       s = secret_sequence.chars
