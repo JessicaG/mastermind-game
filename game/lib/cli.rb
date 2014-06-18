@@ -31,8 +31,6 @@ class CLI
   end
 
   def run
-    # game = Game.new
-    # new(game).start
     print_intro
     input = ""
 
@@ -46,16 +44,6 @@ class CLI
 
     print_outro
   end
-
-  # def start
-  #   print_intro
-  #   while command != "quit"
-  #     print 'What is your guess?'
-  #     parts = process_input(gets.strip)
-  #     execute_command
-  #   end
-  #   print_outro
-  # end
 
   def print_intro
     puts 'Welcome to the MASTER OF MINDS. Choose your fate... (p)lay, read the (i)nstructions, or (q)uit?'
@@ -73,7 +61,7 @@ class CLI
   def execute_command
     case command
     when "i" || "Instructions" || "(I)nstructions"
-      puts 'I will be the codemaker, you will be the codebreaker. The codemaker chooses a pattern of four code pegs. Duplicates are allowed, so the player could even choose four codes of the same color. The chosen pattern is entered into the command line. You must guess the pattern, in both order and color. Once played, I will provides feedback for both color and position.'
+      puts 'I will be the codemaker, you will be the codebreaker. The codemaker chooses a pattern of four color. Duplicates are allowed, so the player could even choose four codes of the same color. The chosen pattern is entered into the command line. You must guess the pattern, in both order and color. Once played, I will provides feedback for both color and position.'
     end
   end
 
@@ -81,6 +69,16 @@ end
 
 # def format_parameters(parameters)
 #   parameters.join(" ").gsub('"', '')
+# end
+
+# def start
+#   print_intro
+#   while command != "quit"
+#     print 'What is your guess?'
+#     parts = process_input(gets.strip)
+#     execute_command
+#   end
+#   print_outro
 # end
 
 
