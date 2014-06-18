@@ -2,7 +2,7 @@ class Sequence
   attr_reader :secret_sequence
 
   def initialize(sequence)
-    @secret_sequence = sequence
+    @secret_sequence = sequence.upcase
   end
 
   def count

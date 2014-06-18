@@ -25,16 +25,17 @@ class SequenceMatcher
 
   def match_count
     ##is this the best way to match? Using chars and mapping? should i do each insted?
+    count    = 0
+    sequence = secret_sequence.dup
 
-    count = 0
     guess.each do |letter|
-      if secret_sequence.include?(letter)
+      if sequence.include?(letter)
         count += 1
-        secret_sequence.slice!(guess.index(letter))
+        sequence.slice!(sequence.index(letter))
       end
     end
-    count
 
+    count
     # letters = []
     # letters = guess.map do |letter|
     #   letter if secret_sequence.include?(letter)
