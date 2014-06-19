@@ -1,6 +1,6 @@
 class Guess
-  attr_reader   :content,
-                :started_at
+  attr_reader   :content
+                # :started_at
   # attr_accessor :Game
 
   def initialize(string)
