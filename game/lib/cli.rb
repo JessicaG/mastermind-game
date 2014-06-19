@@ -19,7 +19,7 @@ class CLI
 
     until win
       puts get_instruction
-      print "Enter your guess: "
+      print "Enter your guess (rgby): "
       guess     = Guess.new(gets.strip).to_s
       matcher   = SequenceMatcher.new(guess, secret_sequence)
       matches   = matcher.match_count
