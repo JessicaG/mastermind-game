@@ -32,17 +32,23 @@ attr_accessor :win,
       turn_count = turn_count +1
       guess      = Guess.new(input).to_s
       matcher    = SequenceMatcher.new(guess, secret_sequence)
-      puts MessagePrinter.guess_valid if !Guess.valid?(guess)
+      MessagePrinter.guess_valid if !Guess.valid?(guess)
       matches    = matcher.match_count
       positions  = matcher.correct_position_count
       MessagePrinter.guess_summary(matches, positions, turn_count)
-      win = matcher.match?
+
       out_of_turns = turn_count >= 15
-      # puts secret_sequence
-      puts MessagePrinter.win_message if win
+      puts secret_sequence
+
+      @win = matcher.match?
+      if win
+        MessagePrinter.win_message(play_time)
+      end
     end
-      play_time    = (Time.now - @game.started_at).to_i
-      puts MessagePrinter.time_message(play_time)
+  end
+
+  def play_time
+    (Time.now - @game.started_at).to_i
   end
 
   def run
@@ -55,6 +61,6 @@ attr_accessor :win,
       play_game                       if input == "p"
       MessagePrinter.get_instruction  if input == "i"
     end
-    MessagePrinter.print_outro
+    MessagePrinter.print_outro(play_time)
   end
 end

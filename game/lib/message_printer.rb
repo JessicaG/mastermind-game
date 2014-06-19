@@ -8,31 +8,26 @@ module MessagePrinter
   end
 
   def self.guess_summary(matches, positions, turn_count)
-    puts "You have #{matches} correct colors, and #{positions} correct positions, with (#{turn_count}/15) guesses left."
+    puts "You have #{matches} correct colors, and #{positions} correct positions, with (#{turn_count}/15) guesses left.".colorize(:green)
   end
 
   def self.guess_valid
-    puts "You're a shitdiot, try again. Input MUST be (4) characters long and only contain charaters of (rgby) only."
+    puts "Did you read the instructions?. Input MUST be (4) characters long and only contain charaters of (rgby) only.".colorize(:red)
   end
 
-  def self.win_message
-    puts "ZOMG! Congratulations, you won!"
-  end
-
-  def self.time_message(play_time)
-    puts  "\n"
-    puts "You played for #{play_time} seconds. Good for you, now go outside and see the sun."
+  def self.win_message(play_time)
+    puts "ZOMG! Congratulations, you won in #{play_time} seconds!".colorize(:magenta)
   end
 
   def self.print_intro
     file = File.open("./assets/welcome.txt", "r")
     contents = file.read
     print contents
-    puts 'Welcome to the MASTER OF MINDS. Choose your fate...'
+    puts 'Welcome to the MASTER OF MINDS. Choose your fate...'.colorize(:blue)
   end
 
-  def self.print_outro
-    print 'You are leaving the master of minds, making you a minor of minds, sucka!'
+  def self.print_outro(play_time)
+    print "You are leaving the master of minds, making you a minor of minds... sucka! You played for #{play_time} seconds".colorize(:yellow)
   end
 
   def self.get_instruction
