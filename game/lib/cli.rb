@@ -27,11 +27,14 @@ attr_accessor :win,
       MessagePrinter.initial_prompt
       input     = gets.strip
       if input  == 'q' then
-        break
+        next
       end
       guess      = Guess.new(input).to_s
       matcher    = SequenceMatcher.new(guess, secret_sequence)
-      MessagePrinter.guess_valid if !Guess.valid?(guess)
+      if !Guess.valid?(guess) then
+         MessagePrinter.guess_invalid
+        next
+      end
       turn_count = turn_count +1
       matches    = matcher.match_count
       positions  = matcher.correct_position_count

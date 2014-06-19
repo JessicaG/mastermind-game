@@ -11,7 +11,7 @@ module MessagePrinter
     puts "You have #{matches} correct colors, and #{positions} correct positions. Turn #{turn_count}/15.".colorize(:green)
   end
 
-  def self.guess_valid
+  def self.guess_invalid
     puts "Did you read the instructions?. Input MUST be (4) characters long and only contain charaters of (rgby) only.".colorize(:red)
   end
 
