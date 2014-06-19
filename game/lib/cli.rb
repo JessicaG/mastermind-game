@@ -26,6 +26,7 @@ class CLI
       positions = matcher.correct_position_count
       puts "You have #{matches} correct colors, and #{positions} correct positions."
       win = matcher.match?
+      execute_command
     end
     puts "Congratulations, you won."
   end
