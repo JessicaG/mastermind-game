@@ -14,28 +14,34 @@ class CLI
     generator       = SequenceGenerator.new(4, %w[g b r y])
     secret_sequence = generator.generate.secret_sequence
     win             = false
+    out_of_turns    = false
+    turn_count      = 0
 
-    until win
+    until win || out_of_turns
       puts  "\n"
       print "Enter your guess (rgby): "
       input     = gets.strip
       if input  == 'q' then
         break
       end
-      guess     = Guess.new(input).to_s
-      matcher   = SequenceMatcher.new(guess, secret_sequence)
+      turn_count = turn_count +1
+      guess      = Guess.new(input).to_s
+      matcher    = SequenceMatcher.new(guess, secret_sequence)
       if !Guess.valid?(guess) then
         puts "You're a shitdiot, try again. Input MUST be (4) characters long and only contain charaters of (rgby) only."
         next
       end
-      matches   = matcher.match_count
-      positions = matcher.correct_position_count
+      matches    = matcher.match_count
+      positions  = matcher.correct_position_count
       puts "You have #{matches} correct colors, and #{positions} correct positions."
+      puts "You have had #{turn_count} guesses"
       win = matcher.match?
+      out_of_turns = turn_count >= 15
     end
-    puts "Congratulations, you won." if win
-    play_time   = (Time.now - @game.started_at).to_i
-    puts "You played for #{play_time} seconds. Good for you. Go outside l00ser."
+    puts "ZOMG! Congratulations, you won!" if win
+    play_time    = (Time.now - @game.started_at).to_i
+    puts  "\n"
+    puts "You played for #{play_time} seconds. Good for you, now go outside and see the sun."
   end
 
   def run

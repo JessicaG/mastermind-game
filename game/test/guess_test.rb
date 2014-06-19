@@ -4,7 +4,7 @@ require_relative '../lib/guess'
 class GuessTest <Minitest::Test
 
   def test_does_guess_have_four_characters
-    skip
+
     game = Game.new
     guess = Guess.new('rgby')
     game.start

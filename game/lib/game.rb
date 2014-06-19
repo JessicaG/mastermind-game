@@ -1,3 +1,7 @@
+require_relative '../lib/guess'
+require_relative '../lib/sequence_generator'
+require_relative '../lib/sequence_matcher'
+
 class Game
   attr_reader :guess_record,
               :guess,
@@ -9,7 +13,7 @@ class Game
     @started_at   = Time.now
   end
 
-  def add_guess
+  def add_guess(guess)
     @guess_record << @guess
   end
 
@@ -18,5 +22,9 @@ class Game
 
   def guess_history
   end
+
+  # def start
+  #   @sequence = SequenceGenerator.new
+  # end
 
 end
