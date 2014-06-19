@@ -10,8 +10,6 @@ attr_accessor :win,
 
   def initialize
     @game            = Game.new
-    @win             = false
-    @out_of_turns    = false
   end
 
   def process_input(input)
@@ -22,6 +20,8 @@ attr_accessor :win,
     generator       = SequenceGenerator.new(4, %w[g b r y])
     secret_sequence = generator.generate.secret_sequence
     turn_count      = 0
+    out_of_turns    = false
+    win             = false
 
     until win || out_of_turns
       MessagePrinter.initial_prompt
@@ -29,18 +29,16 @@ attr_accessor :win,
       if input  == 'q' then
         break
       end
-      turn_count = turn_count +1
       guess      = Guess.new(input).to_s
       matcher    = SequenceMatcher.new(guess, secret_sequence)
       MessagePrinter.guess_valid if !Guess.valid?(guess)
+      turn_count = turn_count +1
       matches    = matcher.match_count
       positions  = matcher.correct_position_count
       MessagePrinter.guess_summary(matches, positions, turn_count)
-
       out_of_turns = turn_count >= 15
       puts secret_sequence
-
-      @win = matcher.match?
+      win = matcher.match?
       if win
         MessagePrinter.win_message(play_time)
       end

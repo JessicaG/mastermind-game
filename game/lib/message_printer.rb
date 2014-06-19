@@ -8,7 +8,7 @@ module MessagePrinter
   end
 
   def self.guess_summary(matches, positions, turn_count)
-    puts "You have #{matches} correct colors, and #{positions} correct positions, with (#{turn_count}/15) guesses left.".colorize(:green)
+    puts "You have #{matches} correct colors, and #{positions} correct positions. Turn #{turn_count}/15.".colorize(:green)
   end
 
   def self.guess_valid
