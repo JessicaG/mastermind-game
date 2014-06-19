@@ -27,7 +27,10 @@ attr_accessor :win,
       MessagePrinter.initial_prompt
       input     = gets.strip
       if input  == 'q' then
-        next
+        break
+      end
+      if input == "i" then
+        MessagePrinter.get_instruction
       end
       guess      = Guess.new(input).to_s
       matcher    = SequenceMatcher.new(guess, secret_sequence)
@@ -40,7 +43,7 @@ attr_accessor :win,
       positions  = matcher.correct_position_count
       MessagePrinter.guess_summary(matches, positions, turn_count)
       out_of_turns = turn_count >= 15
-      puts secret_sequence
+      # puts secret_sequence
       win = matcher.match?
       if win
         MessagePrinter.win_message(play_time)

@@ -12,7 +12,7 @@ module MessagePrinter
   end
 
   def self.guess_invalid
-    puts "Did you read the instructions?. Input MUST be (4) characters long and only contain charaters of (rgby) only.".colorize(:red)
+    puts "Did you read the instructions? Input MUST be (4) characters long and only contain charaters of (rgby).".colorize(:red)
   end
 
   def self.win_message(play_time)
@@ -31,8 +31,8 @@ module MessagePrinter
   end
 
   def self.get_instruction
-    puts 'I have generated a sequence with four elements made up of: (r)ed,
-    (g)reen, (b)lue, and (y)ellow. You have 15 turns to guess the correct order. Use (q)uit at any time to end the game.'
+    puts "I have generated a sequence with four elements made up of:".colorize(:white) + " (r)ed,".colorize(:red) +
+    " (g)reen,".colorize(:green) + " (b)lue,".colorize(:blue) + " and " + " (y)ellow.".colorize(:yellow) + " You have 15 turns to guess the correct order. Use (q)uit at any time to end the game."
   end
 
 
