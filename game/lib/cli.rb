@@ -1,9 +1,17 @@
 require 'pry'
+require 'colorize'
+require_relative 'message_printer'
 
 class CLI
+include MessagePrinter
+
+attr_accessor :win,
+              :out_of_turns
 
   def initialize
-    @game       = Game.new
+    @game            = Game.new
+    @win             = false
+    @out_of_turns    = false
   end
 
   def process_input(input)
@@ -13,13 +21,10 @@ class CLI
   def play_game
     generator       = SequenceGenerator.new(4, %w[g b r y])
     secret_sequence = generator.generate.secret_sequence
-    win             = false
-    out_of_turns    = false
     turn_count      = 0
 
     until win || out_of_turns
-      puts  "\n"
-      print "Enter your guess (rgby): "
+      MessagePrinter.initial_prompt
       input     = gets.strip
       if input  == 'q' then
         break
@@ -27,51 +32,29 @@ class CLI
       turn_count = turn_count +1
       guess      = Guess.new(input).to_s
       matcher    = SequenceMatcher.new(guess, secret_sequence)
-      if !Guess.valid?(guess) then
-        puts "You're a shitdiot, try again. Input MUST be (4) characters long and only contain charaters of (rgby) only."
-        next
-      end
+      puts MessagePrinter.guess_valid if !Guess.valid?(guess)
       matches    = matcher.match_count
       positions  = matcher.correct_position_count
-      puts "You have #{matches} correct colors, and #{positions} correct positions."
-      puts "You have had #{turn_count} guesses"
+      MessagePrinter.guess_summary(matches, positions, turn_count)
       win = matcher.match?
       out_of_turns = turn_count >= 15
+      # puts secret_sequence
+      puts MessagePrinter.win_message if win
+      play_time    = (Time.now - @game.started_at).to_i
+      puts MessagePrinter.time_message(play_time)
     end
-    puts "ZOMG! Congratulations, you won!" if win
-    play_time    = (Time.now - @game.started_at).to_i
-    puts  "\n"
-    puts "You played for #{play_time} seconds. Good for you, now go outside and see the sun."
   end
 
   def run
-    print_intro
+    MessagePrinter.print_intro
     input = ""
-
     until input == "q"
       print "(p)lay, read the (i)nstructions, or (q)uit?: "
       input = gets.strip
 
-      play_game        if input == "p"
-      get_instruction  if input == "i"
+      play_game                       if input == "p"
+      MessagePrinter.get_instruction  if input == "i"
     end
-
-    print_outro
-  end
-
-  def print_intro
-    file = File.open("./assets/welcome.txt", "r")
-    contents = file.read
-    print contents
-    puts 'Welcome to the MASTER OF MINDS. Choose your fate...'
-  end
-
-  def print_outro
-    print 'You are leaving the master of minds, making you a minor of minds, sucka!'
-  end
-
-  def get_instruction
-    puts 'I have generated a sequence with four elements made up of: (r)ed,
-    (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.'
+    MessagePrinter.print_outro
   end
 end
