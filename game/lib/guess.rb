@@ -1,6 +1,7 @@
 class Guess
-  attr_reader :content
-              :started_at
+  attr_reader   :content,
+                :started_at
+  # attr_accessor :Game
 
   def initialize(string)
     @content      = string.chars.map(&:upcase)
@@ -11,8 +12,8 @@ class Guess
     @content.join('')
   end
 
-  def valid?(guess)
-    guess.to_s.upcase =~ /^[RGBY]+$/
+  def self.valid?(guess)
+    guess.to_s.upcase =~ /^[RGBY]{4}$/
   end
 
 end

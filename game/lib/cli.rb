@@ -18,10 +18,14 @@ class CLI
     win             = false
 
     until win
-      puts get_instruction
+      puts "Currently engaging with the Master of all Minds"
       print "Enter your guess (rgby): "
       guess     = Guess.new(gets.strip).to_s
       matcher   = SequenceMatcher.new(guess, secret_sequence)
+      if !Guess.valid?(guess) then
+        puts "You're a shitdiot, try again. Input MUST be (4) characters long and only contain charaters of (rgby) only."
+        next
+      end
       matches   = matcher.match_count
       positions = matcher.correct_position_count
       puts "You have #{matches} correct colors, and #{positions} correct positions."
@@ -40,7 +44,7 @@ class CLI
       input = gets.strip
 
       play_game        if input == "p"
-      get_instructions if input == "i"
+      get_instruction if input == "i"
     end
 
     print_outro
@@ -60,10 +64,12 @@ class CLI
   end
 
   def execute_command
+    while command != 'q'
     case command
     when "i" || "Instructions" || "(I)nstructions"
       puts 'I will be the codemaker, you will be the codebreaker. The codemaker chooses a pattern of four color. Duplicates are allowed, so the player could even choose four codes of the same color. The chosen pattern is entered into the command line. You must guess the pattern, in both order and color. Once played, I will provides feedback for both color and position.'
     end
+  end
   end
 
 end
@@ -84,6 +90,7 @@ end
 
 
 ##Stupid shit to add in later
+
 # '*********+++++++++++++************=====================================***********+++++++++++++*********
 #  ||| Welcome to the MASTER OF MINDS. Choose your fate... (p)lay, read the (i)nstructions, or (q)uit?  |||
 #  |||                                                                                                  |||

@@ -4,6 +4,7 @@ require_relative '../lib/guess'
 class GuessTest <Minitest::Test
 
   def test_does_guess_have_four_characters
+    skip
     game = Game.new
     guess = Guess.new('rgby')
     game.start
@@ -17,10 +18,12 @@ class GuessTest <Minitest::Test
   end
 
   def test_guess_is_empty?
+    skip
     assert_equal [], Game.new.guess_record
   end
 
   def test_can_make_a_guess
+    skip
     game = Game.new
     guess = Guess.new('rgby')
 
@@ -30,12 +33,13 @@ class GuessTest <Minitest::Test
   end
 
   def test_new_sequence_for_new_game
+    skip
     game = Game.new
     game.start
     assert game.sequence
   end
 
-    def test_it_returns_true_for_a_valid_guess
+  def test_it_returns_true_for_a_valid_guess
     assert Guess.valid?('rgby')
     assert Guess.valid?('yyyy')
     assert Guess.valid?('ggrb')
@@ -49,6 +53,4 @@ class GuessTest <Minitest::Test
     refute Guess.valid?(nil)
     refute Guess.valid?(0.1)
   end
-end
-
 end
