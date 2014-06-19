@@ -1,10 +1,12 @@
 class Game
   attr_reader :guess_record,
-              :guess
+              :guess,
+              :started_at
 
   def initialize
     @guess        = guess
     @guess_record = []
+    @started_at   = Time.now
   end
 
   def add_guess

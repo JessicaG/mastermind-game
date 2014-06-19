@@ -1,11 +1,8 @@
 class Guess
   attr_reader   :content
-                # :started_at
-  # attr_accessor :Game
-
+              
   def initialize(string)
     @content      = string.chars.map(&:upcase)
-    @started_at   = Time.now
   end
 
   def to_s

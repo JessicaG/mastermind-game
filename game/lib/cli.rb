@@ -1,10 +1,8 @@
 require 'pry'
 
 class CLI
-  attr_reader :command
 
   def initialize
-    @command    = ""
     @game       = Game.new
   end
 
@@ -34,9 +32,10 @@ class CLI
       positions = matcher.correct_position_count
       puts "You have #{matches} correct colors, and #{positions} correct positions."
       win = matcher.match?
-      # execute_command
     end
     puts "Congratulations, you won." if win
+    play_time   = (Time.now - @game.started_at).to_i
+    puts "You played for #{play_time} seconds. Good for you. Go outside l00ser."
   end
 
   def run
@@ -69,30 +68,4 @@ class CLI
     puts 'I have generated a sequence with four elements made up of: (r)ed,
     (g)reen, (b)lue, and (y)ellow. Use (q)uit at any time to end the game.'
   end
-
 end
-
-# def format_parameters(parameters)
-#   parameters.join(" ").gsub('"', '')
-# end
-
-# def start
-#   print_intro
-#   while command != "quit"
-#     print 'What is your guess?'
-#     parts = process_input(gets.strip)
-#     execute_command
-#   end
-#   print_outro
-# end
-
-
-##Stupid shit to add in later
-
-# '*********+++++++++++++************=====================================***********+++++++++++++*********
-#  ||| Welcome to the MASTER OF MINDS. Choose your fate... (p)lay, read the (i)nstructions, or (q)uit?  |||
-#  |||                                                                                                  |||
-#  |||                                                                                                  |||
-#  |||                                                                                                  |||
-#  *********+++++++++++++************=====================================***********+++++++++++++*********'
-# ~z*Z~*Z~*z Sn00zE y0u l0Se, BuDdY!~z*Z~*Z~*z
