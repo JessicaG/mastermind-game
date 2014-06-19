@@ -40,9 +40,9 @@ attr_accessor :win,
       out_of_turns = turn_count >= 15
       # puts secret_sequence
       puts MessagePrinter.win_message if win
+    end
       play_time    = (Time.now - @game.started_at).to_i
       puts MessagePrinter.time_message(play_time)
-    end
   end
 
   def run
