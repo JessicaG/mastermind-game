@@ -7,13 +7,8 @@ class SequenceMatcherTest < Minitest::Test
 
   def test_it_has_a_secret_sequence
     matcher = SequenceMatcher.new("rgby", "rgby")
-    assert_equal "rgby", matcher.secret_sequence
+    assert_equal ["r","g","b","y"], matcher.secret_sequence
   end
-
-  # def test_it_has_a_guess_sequence
-  #   matcher = SequenceMatcher.new("rrrb", "rrrb")
-  #   assert_equal "rrrb", matcher.guess
-  # end
 
   def test_it_can_match_sequences
     matcher = SequenceMatcher.new("brrr", "brrr")
@@ -38,8 +33,6 @@ class SequenceMatcherTest < Minitest::Test
     assert_equal 3, matcher.match_count
   end
 
-    ##test for 0, 3 and 4##
-    
   def test_it_return_number_of_correct_positions
     matcher = SequenceMatcher.new("bggr", "rygg")
     assert_equal 1, matcher.correct_position_count

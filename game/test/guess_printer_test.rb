@@ -22,7 +22,7 @@ class GuessPrinterTest < Minitest::Test
 
   def test_it_returns_an_informative_answer_message
     printer = GuessPrinter.new
-    assert_equal printer.message(3,3,2), "fill me in with the correct stuff"
+    assert_equal printer.message(3,3,2), "WHOA. You guessed all four of my colors correctly! Nice work!"
   end
 
   #

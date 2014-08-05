@@ -17,14 +17,4 @@ class Game
     @guess_record << @guess
   end
 
-  def counts_turns
-  end
-
-  def guess_history
-  end
-
-  # def start
-  #   @sequence = SequenceGenerator.new
-  # end
-
 end
